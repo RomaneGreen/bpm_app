@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  before_action :set_book, only: [:show, :edit, :update, :destroy]
+  before_action :set_book, only: [:show, :edit, :update]
 
   # GET /books
   def index
@@ -13,6 +13,7 @@ class BooksController < ApplicationController
   # GET /books/new
   def new
     @book = Book.new
+    @book.format = Format.new
   end
 
   # GET /books/1/edit
@@ -22,7 +23,12 @@ class BooksController < ApplicationController
   # POST /books
   def create
     @book = Book.new(book_params)
-
+    if params.has_key? 'author_id'
+      params[:author_id].each do |i|
+        author = Author.find(i)
+        @book.authors << author
+      end  
+    end
     if @book.save
       redirect_to @book, notice: 'Book was successfully created.'
     else
@@ -32,17 +38,18 @@ class BooksController < ApplicationController
 
   # PATCH/PUT /books/1
   def update
-    if @book.update(book_params)
-      redirect_to @book, notice: 'Book was successfully updated.'
-    else
-      render :edit
+    if params.has_key? 'author_id'
+      @book.authors = []
+      params[:author_id].each do |i|
+        author = Author.find(i)
+        @book.authors << author
+      end  
     end
-  end
-
-  # DELETE /books/1
-  def destroy
-    @book.destroy
-    redirect_to books_url, notice: 'Book was successfully destroyed.'
+    if @book.update(book_params)
+      redirect_to @book, notice: 'Book was successfully updated.'      
+    else
+      render :edit        
+    end
   end
 
   private
@@ -51,8 +58,8 @@ class BooksController < ApplicationController
       @book = Book.find(params[:id])
     end
 
-    # Only allow a trusted parameter "white list" through.
+    # Never trust parameters from the scary internet, only allow the white list through.
     def book_params
-      params.require(:book).permit(:title, :release_date, :base_price)
+      params.permit(:title, :release_date, :format_id, :base_price)
     end
 end
