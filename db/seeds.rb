@@ -5,3 +5,16 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+Author.create!([
+  {name: "Dan Lok"},
+  {name: "Gary Vee"},
+  {name: "Tai Lopez"},
+  {name: "John Somez"},
+  {name: "Joe Garcia"}
+])
+Format.create!([
+  {name: "Digital"},
+  {name: "Hardcover"},
+  {name: "Softcover"}
+])
