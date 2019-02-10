@@ -13,4 +13,17 @@
  *= require_tree .
  *= require_self
  *= require foundation_and_overrides
+
  */
+ 
+table {
+  width: 100%;
+}
+
+select {
+  height: auto;
+}
+
+select[size], select[multiple] {
+  background-image: none;
+}
