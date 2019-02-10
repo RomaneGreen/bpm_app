@@ -29,3 +29,27 @@ select {
 select[size], select[multiple] {
   background-image: none;
 }
+
+.button.alert {
+  color: rgb(32, 170, 78);
+  background: #000
+}
+
+.button.alert:hover {
+  color: rgb(32, 170, 78);
+  background: rgb(51, 51, 51)
+}
+
+h1{
+  text-align: center;
+}
+
+hr{
+  width: 50%;
+  border: 3px solid black;
+}
+
+input[type="text"],#author_id,#format_id,label {
+   width: 50%;
+   margin-left: 1rem;
+}
