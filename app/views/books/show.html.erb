@@ -1,19 +1,27 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @book.title %>
-</p>
+<h1>Product details for <%= @book.title %></h1>
+<hr />
+<table>
+<thead>
+  <tr>
+    <th width="30%">Title</th>
+    <th width="30%">Author(s)</th>
+    <th width="15%">Format</th>
+    <th width="15%">Release Date</th>
+    <th width="10%">Base Price</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td><%= @book.title %></td>
+    <td><%= @book.authors.map(&:name).join(', ') %></td>
+    <td><%= @book.format.name %></td>
+    <td><%= @book.release_date.strftime("%B %e, %Y") %></td>
+    <td><%= number_to_currency @book.base_price %></td>
+  </tr>
+</tbody>
+</table>
 
-<p>
-  <strong>Release date:</strong>
-  <%= @book.release_date %>
-</p>
-
-<p>
-  <strong>Base price:</strong>
-  <%= @book.base_price %>
-</p>
-
-<%= link_to 'Edit', edit_book_path(@book) %> |
-<%= link_to 'Back', books_path %>
+<%= link_to 'Edit this book', edit_book_path(@book), class: "button alert" %>
+<%= link_to 'Return to book list', books_path, class: "button success" %>
