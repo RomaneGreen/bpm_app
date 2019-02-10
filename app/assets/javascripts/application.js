@@ -35,3 +35,4 @@ function getFormData(array) {
   });
   return data;
 }
+$(function(){ $(document).foundation(); });
