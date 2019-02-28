@@ -1,6 +1,6 @@
 # BPM
 
-Book App built with Ruby on Rails
+Book App built with Ruby on Rails to test code coverage and testing methodologies
 
 Setup Guide:
 
